@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+
+:root {
+  /* Màu chủ đạo */
+  --primary-orange: #f79421;
+  --primary-blue: #0c1188;
+  --background-btn-blue: #477cbf;
+  --background-btn-red: #ee3129;
+  --text-dark: #1d173d;
+  --text-light: #ffffff;
+  --text-muted: #7a7a93;
+  --gradient-bg: linear-gradient(180deg, #07085a 0%, #0c1188 50%, #f69329 100%);
+  --gradient-bg-card: linear-gradient(130deg, #07085a 0%, #1622a3 50%, #f69329 100%);
+  
+
+  --color-hover: #ffffff22;
+
+  /* background cho weather */
+  --greeting-card--clear: linear-gradient(90deg, #ffe6a7 0%, #ffd4b8 50%, #ffe8f5 100%);
+  --greeting-card--cloudy: linear-gradient(90deg, #dde4f3 0%, #c6d2ea 50%, #bcc7e1 100%);
+  --greeting-card--fog: linear-gradient(90deg, #e3e7ee 0%, #d1d6df 50%, #c3cad5 100%);
+  --greeting-card--drizzle: linear-gradient(90deg, #d7e8ff 0%, #c2dcff 50%, #b5d2fb 100%);
+  --greeting-card--rain: linear-gradient(90deg, #4b5d79 0%, #36445c 50%, #242e3d 100%);
+  --greeting-card--sleet: linear-gradient(90deg, #5a6c8b 0%, #455471 50%, #2f3950 100%);
+  --greeting-card--snow: linear-gradient(90deg, #e2f2ff 0%, #d3e7ff 50%, #c8ddff 100%);
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", "Poppins", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 22px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.btn {
+  background-color: var(--primary-orange);
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 18px;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease;
+}
+
+.btn:hover {
+  transform: scale(1.01);
+
+  /* transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); */
+}
+
+/* Hiệu ứng chuyển */
+.fade-in-up {
+  animation: fadeInUp 0.55s cubic-bezier(0.21, 0.7, 0.4, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Hiệu ứng trượt từ trái sang phải */
+.slide-in-right {
+  animation: slideInRight 0.55s cubic-bezier(0.21, 0.7, 0.4, 1) forwards;
+  will-change: opacity, transform, filter;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+/* background màu nền cho auth form */
+.wrapper-background {
+  min-height: 120vh;
+  width: 100%;
+  position: relative;
+}
+
+.bg-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* background: radial-gradient(125% 125% at 50% 10%, #ffffff 40%, #262262 100%); */
+  background: radial-gradient(125% 125% at 50% 90%, #fff 40%, #475569 100%);
+
+}

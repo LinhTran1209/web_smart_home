@@ -1,0 +1,695 @@
+/* biến màu riêng cho dashboard */
+:root {
+  --dash-bg-main: #f6f4ff;
+  --dash-purple: #477CBF;
+  --dash-purple-dark: #477CBF;
+  --dash-orange: #ff9e3d;
+  --dash-blue: #53c6ff;
+  --dash-text-main: #25233a;
+  --dash-text-muted: #9c9ab5;
+  --dash-card-bg: #ffffff;
+  --dash-radius-lg: 24px;
+  --dash-shadow-soft: 0 10px 30px rgba(43, 26, 120, 0.08);
+  --dash-sidebar-width: 70px;
+  --dash-transition-fast: 0.2s ease;
+}
+
+/* ===== LAYOUT CHUNG DASHBOARD ===== */
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--dash-bg-main);
+  color: var(--dash-text-main);
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px;
+}
+
+.app-content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+/* ===== TOPBAR ===== */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.search-wrapper {
+  flex: 1;
+  max-width: 420px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  background: #fff;
+  box-shadow: var(--dash-shadow-soft);
+  font-size: 14px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: none;
+  background: #fff;
+  box-shadow: var(--dash-shadow-soft);
+  cursor: pointer;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--dash-purple);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.avatar.small {
+  width: 40px;
+  height: 40px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-role {
+  font-size: 12px;
+  color: var(--dash-text-muted);
+}
+
+/* ===== CARD CHUNG ===== */
+
+.card {
+  background: var(--dash-card-bg);
+  border-radius: var(--dash-radius-lg);
+  box-shadow: var(--dash-shadow-soft);
+  padding: 20px 24px;
+}
+
+.section-card {
+  padding-bottom: 24px;
+}
+
+.side-card {
+  padding: 18px 20px;
+}
+
+/* ===== GRID HOME ===== */
+
+.home-grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 24px;
+}
+
+.home-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.home-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ===== GREETING CARD ===== */
+
+.greeting-card {
+  display: flex;
+  align-items: center;
+  padding: 18px 24px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #fff2d6 0%, #ffe7de 50%, #ffeaf7 100%);
+  color: #222;
+}
+
+
+
+/* cho thời tiết 5 trạng thái */
+/* 1000: Sunny / clear sky */
+.greeting-card--clear {
+  background: var(--greeting-card--clear);
+}
+
+/* 1003, 1006, 1009: partly cloudy / cloudy / overcast */
+.greeting-card--cloudy {
+  background: var(--greeting-card--cloudy);
+}
+
+/* fog / mist */
+.greeting-card--fog {
+  background: var(--greeting-card--fog );
+}
+
+/* drizzle */
+.greeting-card--drizzle {
+  background: var(--greeting-card--drizzle);
+}
+
+/* rain, showers, thunder */
+.greeting-card--rain {
+  background: var(--greeting-card--rain);
+  color: #f5f5f5;
+}
+
+/* sleet / mixed rain-snow */
+.greeting-card--sleet {
+  background: var(--greeting-card--sleet);
+  color: #f5f5f5;
+}
+
+/* snow, blizzard, snow showers */
+.greeting-card--snow {
+  background: var(--greeting-card--snow);
+}
+
+
+
+/* loading / error */
+.weather-loading,
+.weather-error {
+  font-size: 13px;
+}
+
+/* LEFT SIDE */
+.weather-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.weather-temp {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.weather-location {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.weather-date {
+  font-size: 13px;
+  /* color: #6c6c6c; */
+}
+
+.weather-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: 12px;
+  /* color: #444; */
+}
+
+.weather-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.weather-meta-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* CENTER – Air Quality block */
+.weather-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.aqi-card {
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 420px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* top row: icon + title + subtitle */
+.aqi-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: auto;
+}
+
+.aqi-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.aqi-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.aqi-title {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.aqi-subtitle {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* main row: status badge + index + PM2.5 */
+.aqi-main-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.aqi-badge {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* AQI colors (reuse your old ones) */
+.aqi-badge--good {
+  background: rgba(77, 201, 153, 0.16);
+  color: #0d9f67;
+}
+
+.aqi-badge--moderate {
+  background: rgba(245, 199, 82, 0.18);
+  color: #b38200;
+}
+
+.aqi-badge--bad {
+  background: rgba(242, 115, 115, 0.18);
+  color: #c53030;
+}
+
+.aqi-badge--unknown {
+  background: rgba(160, 160, 160, 0.18);
+  color: #555;
+}
+
+.aqi-index-text {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.aqi-pm {
+  font-size: 12px;
+}
+
+/* small explanation line */
+.aqi-note {
+  margin: 0;
+  margin-top: 2px;
+  font-size: 12px;
+  opacity: 0.9;
+  display: flex;
+  margin: auto;
+}
+
+
+/* RIGHT SIDE */
+.weather-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 80px;
+}
+
+.weather-icon {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+
+/* ===== HEADER SECTION ===== */
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.section-header-right {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--dash-text-muted);
+}
+
+.muted {
+  color: var(--dash-text-muted);
+}
+
+/* ===== HOME DEVICES ===== */
+
+.devices-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.device-card {
+  border-radius: 18px;
+  padding: 16px;
+  background: #f7f7ff;
+}
+
+.device-card--primary {
+  background: linear-gradient(180deg, var(--dash-purple) 0%, var(--dash-purple-dark) 100%);
+  color: #fff;
+}
+
+.device-card--neutral {
+  background: #fff;
+  border: 1px solid #ece9ff;
+}
+
+.device-name {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.device-icon {
+  font-size: 24px;
+}
+
+.device-status {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.device-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+/* ===== SWITCH ===== */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+}
+
+.switch.small {
+  width: 44px;
+  height: 22px;
+}
+
+.switch.tiny {
+  width: 30px;
+  height: 16px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background-color: #e5e1ff;
+  transition: 0.3s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.switch input:checked + .slider {
+  background-color: var(--dash-purple);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(16px);
+}
+
+/* ===== TEMPERATURE PANEL ===== */
+
+.temperature-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.temperature-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px 0;
+}
+
+.round-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #f1efff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.temp-circle-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.temp-circle-outer {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 10px solid #e9e5ff;
+  border-top-color: var(--dash-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.temp-circle-inner {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.temp-value {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.temp-unit {
+  font-size: 12px;
+  color: var(--dash-text-muted);
+}
+
+.temperature-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--dash-text-muted);
+}
+
+/* ===== MY DEVICES (RIGHT) ===== */
+
+.mydevices-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.small-device-card {
+  border-radius: 18px;
+  padding: 14px;
+  color: #fff;
+}
+
+.sd-purple {
+  background: #7b4ff8;
+}
+
+.sd-orange {
+  background: #ff9e3d;
+}
+
+.sd-brown {
+  background: #f57a48;
+}
+
+.sd-blue {
+  background: #53c6ff;
+}
+
+/* ===== MEMBERS ===== */
+
+.members-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.member-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 11px;
+}
+
+.member-info {
+  text-align: center;
+}
+
+.member-name {
+  font-weight: 600;
+}
+
+.member-role {
+  color: var(--dash-text-muted);
+}
+
+/* ===== POWER PANEL ===== */
+
+.power-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.power-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-orange {
+  background: #ff9e3d;
+}
+
+.power-chart-placeholder {
+  height: 130px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #fff5ea 0%, #f3e3ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-line {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 55%;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--dash-purple);
+  transform: skewX(-20deg);
+}
+
+.power-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  font-size: 11px;
+  color: var(--dash-text-muted);
+}
+
+/* ===== RESPONSIVE NHẸ ===== */
+
+@media (max-width: 1024px) {
+  .home-grid {
+    grid-template-columns: 1fr;
+  }
+}

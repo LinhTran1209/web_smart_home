@@ -1,0 +1,360 @@
+/* ===== MAIN / CARD ===== */
+.auth-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 16px 60px;
+  margin-top: 90px;
+}
+
+.auth-card {
+  width: 60%;
+  max-width: 1180px;
+  /* background: transparent; */
+  background-color: #ffffff;
+  border-radius: 28px;
+  padding: 32px 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 40px;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== ILLUSTRATION (cột trái trong children) ===== */
+.auth-illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-illustration img {
+  width: 100%;
+  max-width: 430px;
+  height: auto;
+}
+
+/* ===== FORM AREA (cột phải trong children) ===== */
+
+/* wrapper cho form để đổi step mượt */
+.auth-form-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* hiệu ứng đổi form mượt hơn */
+.fade {
+  animation: fadeInUp 0.35s ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-title {
+  font-size: 30px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 28px;
+}
+
+/* label + icon */
+.auth-field {
+  margin-bottom: 18px;
+}
+
+.auth-label {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+}
+
+.auth-label-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid #f0d0a1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+/* line input */
+.auth-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #d7d7eb;
+  padding: 6px 0 8px;
+  outline: none;
+  font-size: 14px;
+}
+
+.auth-input::placeholder {
+  color: #c2c2d6;
+}
+
+/* Register / Forgot */
+.auth-links-row {
+  margin-top: 8px;
+  margin-bottom: 26px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  font-size: 15px;
+}
+
+.auth-link {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* button */
+.auth-submit-area {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.auth-submit-btn {
+  border: none;
+  border-radius: 999px;
+  background: var(--primary-blue);
+  color: #ffffff;
+  padding: 12px 40px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease-in;
+}
+
+.auth-submit-btn:hover {
+  /* transform: scale(1.01); */
+  opacity: 0.9;
+}
+
+/* ===== OTP UI (Verify OTP step) ===== */
+.otp-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+.otp-timer {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: -4px;
+}
+
+.otp-input-row {
+  display: flex;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.otp-input {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 1.5px solid #b8b8d6;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.otp-input:focus {
+  border-color: #5b5fc7;
+  box-shadow: 0 0 0 3px rgba(91, 95, 199, 0.12);
+}
+
+.otp-error {
+  color: #e11d48;
+  font-size: 14px;
+  margin-top: -4px;
+}
+
+.otp-resend {
+  margin-top: 2px;
+  font-size: 15px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.otp-resend-btn {
+  background: transparent;
+  border: none;
+  color: #111827;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.otp-resend-btn:hover {
+  text-decoration: underline;
+}
+
+/* ===== BOTTOM BAR ===== */
+.auth-bottom {
+  height: 40px;
+  background: var(--primary-blue);
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 960px) {
+  .auth-card {
+    padding: 28px 26px;
+    grid-template-columns: 1fr;
+  }
+
+  .auth-main {
+    align-items: center;
+  }
+
+  .auth-submit-area {
+    justify-content: center;
+  }
+
+  .auth-submit-btn {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  /* otp co lại nhẹ trên mobile */
+  .otp-input {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .auth-header-inner {
+    padding: 0 20px;
+  }
+
+  .auth-brand-name {
+    font-size: 18px;
+  }
+
+  .auth-card {
+    border-radius: 18px;
+  }
+
+  .otp-input-row {
+    gap: 8px;
+  }
+}
+
+/* ===== OTP CARD (bottom of register form) ===== */
+.otp-card {
+  margin-top: 14px;
+  padding: 14px 14px 12px;
+  border: 1.5px dashed #d7d7eb;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fafbff;
+}
+
+.otp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.otp-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.otp-verified-badge {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f7a3d;
+  background: #e8f7ee;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid #7bd89c;
+}
+
+.otp-send-btn {
+  width: 100%;
+  border: none;
+  background: var(--primary-blue);
+  color: #fff;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.otp-send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.otp-send-btn:hover:not(:disabled) {
+  /* transform: scale(1.02); */
+  opacity: 0.9;
+}
+
+.otp-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.otp-verify-btn {
+  flex: 1;
+  border: none;
+  background: #111827;
+  color: #fff;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.otp-verify-btn:hover {
+  /* transform: scale(1.02); */
+  opacity: 0.9;
+}
+
+.otp-resend-btn {
+  width: 110px;
+  border: 1px solid #d7d7eb;
+  background: #fff;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.otp-resend-btn:hover {
+  background: #f3f4f6;
+}

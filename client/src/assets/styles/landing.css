@@ -1,0 +1,386 @@
+/* ================== HEADER ================== */
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(7, 8, 90, 0.2);
+  backdrop-filter: blur(9px);
+  z-index: 100;
+  padding: 0 20px;
+  height: 70px;
+}
+
+.logo {
+  display: flex;
+  gap: 10px;
+}
+
+.logo img {
+  height: 60px;
+  display: flex;
+  margin: auto;
+}
+
+.logo p {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--text-light);
+  display: flex;
+}
+
+nav {
+  display: flex;
+  margin-right: 40px;
+  height: 71px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-light);
+  font-size: 18px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: var(--color-hover);
+}
+
+/* ================== INTRO / ONBOARDING ================== */
+
+.intro {
+  background: var(--gradient-bg);
+  min-height: 100vh;
+  padding-top: 90px; /* chừa chỗ cho header fixed */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-light);
+  padding-inline: 20px;
+  box-sizing: border-box;
+}
+
+.introDefault {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.introDefault p {
+  max-width: 700px;
+  text-align: center;
+}
+
+.btn-get-started {
+  margin-top: 24px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: none;
+  background: var(--primary-orange);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.btn-get-started:hover {
+  /* transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  background-color: #ff9f3d; */
+}
+
+/* ================== FEATURES SECTION ================== */
+
+.features {
+  padding: 80px 40px;
+  background: linear-gradient(180deg, #f69329 10%, #0c1188 50%, #07085a 100%);
+  background-color: var(--primary-blue);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  color: var(--text-light);
+  box-sizing: border-box;
+}
+
+.feature-card {
+  background: var(--gradient-bg-card);
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.feature-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-card h3 {
+  color: var(--color-accent);
+  margin-top: 0;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.img-card {
+  width: 100%;
+  height: 260px;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  background-color: #d1d1e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feature-card p {
+  color: #e1e2ff;
+  line-height: 1.6;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* ================== ONBOARDING LAYOUT ================== */
+
+.intro-screen {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* animation intro chuyển slide mượt hơn */
+.fade-in-up {
+  animation: fadeInUp 0.55s cubic-bezier(0.21, 0.7, 0.4, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* layout phần onboarding slide */
+
+.intro-onboard {
+  display: flex;
+  align-items: center;        /* căn giữa 2 cột theo chiều dọc */
+  justify-content: center;
+  gap: 60px;
+  width: 100%;
+  padding: 48px 72px;         /* padding lớn hơn cho thoáng */
+  box-sizing: border-box;
+}
+
+.onboard-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;        /* ảnh nằm đúng giữa khối bên trái */
+}
+
+.onboard-left img {
+  width: 340px;
+  max-width: 100%;
+  border-radius: 50px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  object-fit: cover;
+}
+
+.onboard-right {
+  flex: 1;
+  max-width: 520px;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;    /* chữ vẫn căn trái */
+  justify-content: center;    /* cả block chữ + indicator + nút nằm giữa theo chiều dọc */
+  gap: 16px;                  /* khoảng cách đều giữa các phần */
+}
+
+.onboard-right h2 {
+  font-size: 32px;
+  margin: 0;                  /* bỏ margin mặc định cho sát layout hơn */
+}
+
+.onboard-right p {
+  font-size: 18px;
+  opacity: 0.92;
+  margin: 0;
+  max-width: 460px;           /* giới hạn độ rộng để chữ không tràn dài */
+}
+
+/* ================== INDICATOR SLIDE (PILL + DOT) ================== */
+
+.onboard-indicator {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* base style cho cả pill & dot để dễ animate */
+.indicator-pill,
+.indicator-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  transform-origin: center;
+  animation: indicatorEnter 0.35s ease;
+  transition: transform 0.35s ease, opacity 0.35s ease,
+    background-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* viên thuốc cam (slide đang active) */
+.indicator-pill {
+  width: 44px;
+  height: 14px;
+  background: var(--primary-orange);
+  box-shadow: 0 0 0 0 rgba(246, 147, 41, 0.6);
+}
+
+/* chấm tròn trắng (slide chưa active) */
+.indicator-dot {
+  width: 14px;
+  height: 14px;
+  background: #ffffffcc;
+  opacity: 0.6;
+}
+
+/* hiệu ứng khi phần tử mới mount (chuyển slide) */
+@keyframes indicatorEnter {
+  0% {
+    transform: scale(0.65) translateY(3px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* hiệu ứng hover nhỏ cho indicator (cho vui tay) */
+.onboard-indicator span:hover {
+  transform: scale(1.1);
+}
+
+/* desktop: tinh chỉnh kích thước indicator cho cân đối hơn */
+@media (min-width: 1024px) {
+  .indicator-pill {
+    width: 50px;
+    height: 16px;
+  }
+
+  .indicator-dot {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ================== BUTTONS ONBOARDING ================== */
+
+.onboard-actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 18px;
+}
+
+.btn-skip,
+.btn-next {
+  padding: 5px 28px;
+  font-size: 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.25s ease, transform 0.25s ease,
+    box-shadow 0.25s ease, color 0.25s ease;
+}
+
+.btn-skip {
+  background: #ffffff33;
+  color: var(--text-light);
+}
+
+.btn-skip:hover {
+  background: #ffffff55;
+  transform: translateY(-1px);
+}
+
+.btn-next {
+  background: var(--primary-orange);
+  color: #fff;
+}
+
+.btn-next:hover {
+  background: #ff9f3d;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* ================== RESPONSIVE ================== */
+
+@media (max-width: 900px) {
+  .intro-onboard {
+    flex-direction: column;
+    padding-inline: 20px;
+    gap: 32px;
+  }
+
+  .onboard-left img {
+    width: 260px;
+    border-radius: 50px;
+  }
+
+  .onboard-right {
+    align-items: center;
+    text-align: center;
+  }
+
+  .onboard-right h2 {
+    font-size: 26px;
+  }
+
+  .onboard-right p {
+    font-size: 16px;
+  }
+
+  .features {
+    padding: 60px 20px;
+    grid-template-columns: 1fr;
+  }
+}
