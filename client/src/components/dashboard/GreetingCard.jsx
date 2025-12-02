@@ -1,4 +1,4 @@
-// src/components/dashboard/GreetingCard.jsx
+import "../../assets/styles/greetingcard.css";
 import React, { useEffect, useState } from "react";
 import { Droplets, Wind, Activity } from "lucide-react";
 import api from "../../utils/axios.js";
@@ -181,7 +181,7 @@ const GreetingCard = ({ city = "HaNoi" }) => {
         </div>
       )}
 
-      {/* RIGHT – weather icon (Figma image) */}
+      {/* RIGHT – weather icon */}
       <div className="weather-right">
         <img
           className="weather-icon"

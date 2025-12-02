@@ -2,15 +2,18 @@
 
 .sidebar {
   width: var(--dash-sidebar-width);
-  /* background: linear-gradient(180deg, #7b4ff8 0%, #5b32d6 100%); */
   padding: 20px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #fff;
   background: linear-gradient(130deg, #07085a 0%, #1622a3 50%, #f69329 100%);
-
+  /* border-radius: 999px; */
+  /* margin: 18px 20px; */
+  box-shadow: 0 10px 30px rgba(7, 8, 90, 0.4);
 }
+
+/* logo */
 
 .sidebar-logo {
   width: 50px;
@@ -26,7 +29,10 @@
   height: 100%;
 }
 
+/* ===== NAV + MOVING CUTOUT ===== */
+
 .sidebar-nav {
+  position: relative;
   display: flex;
   margin: auto;
   flex-direction: column;
@@ -34,8 +40,27 @@
   flex: 1;
 }
 
+/* “lỗ khoét” di chuyển – 1 element duy nhất */
+.sidebar-cutout {
+  position: absolute;
+  right: -8px;
+  width: 1px;
+  height: 50px;
+  background: var(--dash-bg-main);
+  border-radius: 28px;
+  transform: translateY(-50%);
+  top: 24px;
+  transition: top 0.23s cubic-bezier(0.2, 0.7, 0.4, 1);
+  z-index: 0;
+  pointer-events: none;
+  
+}
+
+/* ===== NAV ITEM ===== */
+
 .sidebar-item {
   width: 46px;
+  z-index: 100;
   height: 46px;
   border-radius: 16px;
   display: flex;
@@ -46,39 +71,34 @@
   font-size: 13px;
   position: relative;
   background: transparent;
-  transition: background var(--dash-transition-fast),
-    color var(--dash-transition-fast);
+  transition:
+    background var(--dash-transition-fast),
+    color var(--dash-transition-fast),
+    transform 0.18s ease-out;
 }
 
 .sidebar-item svg {
   color: #eee;
 }
 
-/* Tạo khoét lỗ */
-.sidebar-item::before {
-  content: "";
-  position: absolute;
-  background: var(--dash-bg-main);
-  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+/* hover + active */
+
+.sidebar-item:hover,
+.sidebar-item.active {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
 }
 
-
-.sidebar-item:hover::before,
-.sidebar-item.active::before {
-  opacity: 1;
-  transform: translateY(-50%) translateX(2px);
+.sidebar-item:hover svg,
+.sidebar-item.active svg {
+  color: #fff;
 }
 
-.sidebar-item.active,
 .sidebar-item:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  transform: translateX(2px);
 }
 
-.sidebar-item.active svg,
-.sidebar-item:hover svg {
-  color: #fff;
-}
+/* ===== FOOTER (LOGOUT) ===== */
 
 .sidebar-footer {
   font-size: 12px;

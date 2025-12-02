@@ -1,5 +1,7 @@
 import { MapPin, Shield, Users } from "lucide-react";
 import React, { useEffect, useState} from "react";
+import "../../assets/styles/topbar.css";
+import { Search } from "lucide-react";
 
 const TopBar = () => {
   const account = JSON.parse(localStorage.getItem("account")) || {};
@@ -13,6 +15,7 @@ const TopBar = () => {
           placeholder="Search"
           type="text"
         />
+        <Search size={16} className="search-icon" />
       </div>
 
       <div className="topbar-actions">

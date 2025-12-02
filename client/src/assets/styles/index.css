@@ -30,8 +30,21 @@
   --greeting-card--rain: linear-gradient(90deg, #4b5d79 0%, #36445c 50%, #242e3d 100%);
   --greeting-card--sleet: linear-gradient(90deg, #5a6c8b 0%, #455471 50%, #2f3950 100%);
   --greeting-card--snow: linear-gradient(90deg, #e2f2ff 0%, #d3e7ff 50%, #c8ddff 100%);
-}
+  
 
+  --dash-bg-main: #f6f4ff;
+  --dash-purple: #477CBF;
+  --dash-purple-dark: #477CBF;
+  --dash-orange: #ff9e3d;
+  --dash-blue: #53c6ff;
+  --dash-text-main: #25233a;
+  --dash-text-muted: #9c9ab5;
+  --dash-card-bg: #ffffff;
+  --dash-radius-lg: 24px;
+  --dash-shadow-soft: 0 10px 30px rgba(43, 26, 120, 0.08);
+  --dash-sidebar-width: 70px;
+  --dash-transition-fast: 0.2s ease;
+}
 body {
   margin: 0;
   font-family: "Montserrat", "Poppins", system-ui, -apple-system,

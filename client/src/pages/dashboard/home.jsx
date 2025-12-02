@@ -23,9 +23,9 @@ const HomePage = () => {
 
       {/* Cột phải */}
       <div className="home-right">
-        <section className="card side-card">
+        {/* <section className="card side-card">
           <MyDevicesPanel />
-        </section>
+        </section> */}
 
         <section className="card side-card">
           <MembersPanel />

@@ -1,0 +1,220 @@
+/* ===== GREETING CARD ===== */
+
+.greeting-card {
+  display: flex;
+  align-items: center;
+  padding: 18px 24px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #fff2d6 0%, #ffe7de 50%, #ffeaf7 100%);
+  color: #222;
+}
+
+
+
+/* cho thời tiết 5 trạng thái */
+/* 1000: Sunny / clear sky */
+.greeting-card--clear {
+  /* background: var(--greeting-card--clear); */
+  background: linear-gradient(90deg, #ffe6a7 0%, #ffd4b8 50%, #ffe8f5 100%);
+}
+
+/* 1003, 1006, 1009: partly cloudy / cloudy / overcast */
+.greeting-card--cloudy {
+  background: var(--greeting-card--cloudy);
+}
+
+/* fog / mist */
+.greeting-card--fog {
+  background: var(--greeting-card--fog );
+}
+
+/* drizzle */
+.greeting-card--drizzle {
+  background: var(--greeting-card--drizzle);
+}
+
+/* rain, showers, thunder */
+.greeting-card--rain {
+  background: var(--greeting-card--rain);
+  color: #f5f5f5;
+}
+
+/* sleet / mixed rain-snow */
+.greeting-card--sleet {
+  background: var(--greeting-card--sleet);
+  color: #f5f5f5;
+}
+
+/* snow, blizzard, snow showers */
+.greeting-card--snow {
+  background: var(--greeting-card--snow);
+}
+
+
+
+/* loading / error */
+.weather-loading,
+.weather-error {
+  font-size: 13px;
+}
+
+/* LEFT SIDE */
+.weather-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.weather-temp {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.weather-location {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.weather-date {
+  font-size: 13px;
+  /* color: #6c6c6c; */
+}
+
+.weather-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: 12px;
+  /* color: #444; */
+}
+
+.weather-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.weather-meta-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* CENTER – Air Quality block */
+.weather-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.aqi-card {
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 420px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* top row: icon + title + subtitle */
+.aqi-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: auto;
+}
+
+.aqi-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.aqi-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.aqi-title {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.aqi-subtitle {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* main row: status badge + index + PM2.5 */
+.aqi-main-row {
+  display: flex;
+  margin: auto;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.aqi-badge {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* AQI colors (reuse your old ones) */
+.aqi-badge--good {
+  background: rgba(77, 201, 153, 0.16);
+  color: #0d9f67;
+}
+
+.aqi-badge--moderate {
+  background: rgba(245, 199, 82, 0.18);
+  color: #b38200;
+}
+
+.aqi-badge--bad {
+  background: rgba(242, 115, 115, 0.18);
+  color: #c53030;
+}
+
+.aqi-badge--unknown {
+  background: rgba(160, 160, 160, 0.18);
+  color: #555;
+}
+
+.aqi-index-text {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.aqi-pm {
+  font-size: 12px;
+}
+
+/* small explanation line */
+.aqi-note {
+  margin: 0;
+  margin-top: 2px;
+  font-size: 12px;
+  opacity: 0.9;
+  display: flex;
+  margin: auto;
+}
+
+
+/* RIGHT SIDE */
+.weather-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 80px;
+}
+
+.weather-icon {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
