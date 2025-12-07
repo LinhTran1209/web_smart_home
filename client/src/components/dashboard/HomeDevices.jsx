@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import api from "../../utils/axios.js";
 import { Lightbulb, Fan, Snowflake, Thermometer } from "lucide-react";
 import no_data from "../../assets/icons/no_data.svg";
+import checkDeviceType from "../../utils/checkDeviceType.js";
 
 const HomeDevices = () => {
   const [buildings, setBuildings] = useState([]);
@@ -27,7 +28,7 @@ const HomeDevices = () => {
 
         const buildingsData = bRes.data || [];
         const roomsData = rRes.data || [];
-        const devicesData = dRes.data || [];
+        const devicesData = (dRes.data || []).filter(d => d.type !== "sensor");
 
         setBuildings(buildingsData);
         setRooms(roomsData);
@@ -66,7 +67,7 @@ const HomeDevices = () => {
     return devices.filter((d) => d.room_id === selectedRoomId);
   }, [devices, selectedRoomId]);
 
-  // ===== LOAD DEVICE STATE CHO TỪNG DEVICE TRONG ROOM =====
+  // ===== LOAD DEVICE STATE CHO TỪNG DEVICE TRONG ROOM ======================================================
   useEffect(() => {
     const fetchStatesForRoom = async () => {
       if (!devicesInRoom.length) {
@@ -76,28 +77,18 @@ const HomeDevices = () => {
 
       setLoadingDevices(true);
       try {
-        const promises = devicesInRoom.map((device) =>
-          api
-            .get(`/device-states/${device.device_id}`)
-            .then((res) => {
-              const data = res.data;
-              const stateDoc = Array.isArray(data) ? data[0] : data;
-              return { device_id: device.device_id, state: stateDoc };
-            })
-            .catch((err) => {
-              console.error(
-                `Error loading state for ${device.device_id}:`,
-                err
-              );
-              return null;
-            })
+        // Lọc bỏ sensor
+        const filteredDevices = devicesInRoom.filter(d => d.type !== "sensor");
+        const results = await Promise.all(
+          filteredDevices.map((device) =>
+            api.get(`/device-states/${device.device_id}`).then((res) => res.data[0])
+          )
         );
 
-        const results = await Promise.all(promises);
         const map = {};
         results.forEach((item) => {
-          if (item && item.state) {
-            map[item.device_id] = item.state;
+          if (item && item.device_id) {
+            map[item.device_id] = item;
           }
         });
         setDeviceStatesMap(map);
@@ -112,18 +103,17 @@ const HomeDevices = () => {
   }, [devicesInRoom]);
 
   // ===== ICON THEO device_type =====
-  const getIconComponent = (deviceState, device) => {
-    const deviceType = (deviceState?.device_type || "").toLowerCase();
-
-    if (deviceType.includes("led")) return Lightbulb;
-    if (deviceType.includes("fan")) return Fan;
-    if (deviceType.includes("ac")) return Snowflake;
-
-    if (device?.type === "sensor" || deviceType.includes("sensor")) {
-      return Thermometer;
+  const getIconComponent = (deviceState) => {
+    // console.log("deviceState", deviceState);
+    const deviceType = checkDeviceType(deviceState?.device_type);
+    switch (deviceType) {
+      case "ac":
+        return Snowflake;
+      case "fan":
+        return Fan;
+      default:
+        return Lightbulb;
     }
-
-    return Lightbulb;
   };
 
   // ===== CHECK ON / OFF =====
@@ -194,7 +184,6 @@ const HomeDevices = () => {
 
   return (
     <>
-      {/* HEADER: ROOM (TRÁI) - BUILDING (PHẢI) */}
       <div className="section-header">
         <div className="section-header-left">
           <span className="section-label">Room:</span>
@@ -245,7 +234,7 @@ const HomeDevices = () => {
           {devicesInRoom.map((device) => {
             const state = deviceStatesMap[device.device_id];
             const on = isOn(state);
-            const IconComp = getIconComponent(state, device);
+            const IconComp = getIconComponent(state);
             const cardClass = on
               ? "device-card device-card--primary"
               : "device-card device-card--neutral";

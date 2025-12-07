@@ -1,9 +1,10 @@
 import GreetingCard from "../../components/dashboard/GreetingCard.jsx";
 import HomeDevices from "../../components/dashboard/HomeDevices.jsx";
-import TemperaturePanel from "../../components/dashboard/TemperaturePanel.jsx";
-import MyDevicesPanel from "../../components/dashboard/MyDevicesPanel.jsx";
+import MyDevicesPanel from "../../components/dashboard/DevicePanel.jsx";
 import MembersPanel from "../../components/dashboard/MembersPanel.jsx";
 import PowerChart from "../../components/dashboard/PowerChart.jsx";
+
+import checkDeviceType from "../../utils/checkDeviceType.js";
 
 const HomePage = () => {
   return (
@@ -17,7 +18,7 @@ const HomePage = () => {
         </section>
 
         <section className="card section-card">
-          <TemperaturePanel />
+          <MyDevicesPanel />
         </section>
       </div>
 

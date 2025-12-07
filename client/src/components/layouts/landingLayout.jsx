@@ -5,7 +5,7 @@ const LandingLayout = ({ children }) => {
     <>
       <header>
         <div className="logo">
-          <img src=".\public\logo.png" alt="VO Smart logo" height="60" />
+          <img src=".\logo.png" alt="VO Smart logo" height="60" />
           <p>VO SMART</p>
         </div>
         <nav>

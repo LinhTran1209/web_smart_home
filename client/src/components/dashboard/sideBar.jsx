@@ -97,9 +97,9 @@ const SideBar = () => {
         ))}
       </nav>
 
-      <div className="sidebar-footer">
+      {/* <div className="sidebar-footer">
         <LogOut size={20} />
-      </div>
+      </div> */}
     </aside>
   );
 };

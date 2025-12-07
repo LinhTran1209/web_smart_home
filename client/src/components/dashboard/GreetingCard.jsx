@@ -187,7 +187,6 @@ const GreetingCard = ({ city = "HaNoi" }) => {
           className="weather-icon"
           src={visual.icon}
           alt={conditionText}
-          loading="lazy"
         />
       </div>
     </section>

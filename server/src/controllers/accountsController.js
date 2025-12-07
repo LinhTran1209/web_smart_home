@@ -166,6 +166,16 @@ export const login = async (req, res) => {
     };
 };
 
+// POST /auth/logout
+export const logout = async (req, res) => {
+    try {
+        return res.status(200).json({message: "Logout successfully."});
+    } catch (error) {
+        console.error("logout error", error);
+        res.status(500).json({message: "Logout error"})
+    }
+};
+
 // get /auth/me
 export const me = async (req, res) => {
     try {
