@@ -5,6 +5,12 @@
   flex-direction: column;
 }
 
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .toggle-inline {
   display: flex;
   align-items: center;
@@ -14,113 +20,88 @@
 
 .device-body {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  padding: 20px 0;
   flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 20px 0;
 }
 
-/* css cho fan */
+/* ===== FAN SPEED (fan riêng) ===== */
 
 .content-fans {
   display: flex;
-  border-radius: 10px;
-  border: var(--primary-orange) solid 0.5px;
   width: 80%;
-  justify-content: center;
+  border-radius: 14px;
+  border: 0.5px solid var(--primary-orange);
+  overflow: hidden;
 }
 
 .btn-fan {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  background: #ffffff;
+  cursor: pointer;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: none;
-  border: none;
-  cursor: pointer;
   gap: 7px;
-  width: 33.3%;
-  padding: 10px 0;
+
+  transition: background 0.2s ease;
 }
 
-.btn-fan:first-child {
-  border-right: var(--primary-orange) solid 0.5px;
-}
-
-.btn-fan:last-child {
-  border-left: var(--primary-orange) solid 0.5px;
-}
-
-.btn-fan:first-child:hover {
-  border-radius: 10px 0 0 10px;
-}
-
-.btn-fan:last-child:hover {
-  border-radius: 0 10px 10px 0;
-}
-
-.btn-fan:hover,
-.btn-fan:first-child:hover,
-.btn-fan:last-child:hover {
-  background: var(--hv-device-card);
-}
-
-.fan-icon {
-  width: 24px;
+/* border ngăn cách bên trong */
+.btn-fan + .btn-fan {
+  border-left: 0.5px solid var(--primary-orange);
 }
 
 .btn-fan span {
   font-size: 14px;
-  color: var(--text-dark);
+  color: #262262;
 }
 
+.btn-fan--active {
+  background: var(--primary-orange);
+}
 
-/* css cho content light */
+.btn-fan--active span {
+  color: #ffffff;
+}
+
+.btn-fan:hover:not(.btn-fan--active) {
+  background: var(--hv-device-card);
+}
+
+/* ===== LIGHT ===== */
 
 .content-light {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  border: var(--primary-orange) solid 0.5px;
-  width: 20%;
-  padding: 20px 0;
+  width: 220px;
+  height: 120px;
+  border-radius: 14px;
+  border: 0.5px solid var(--primary-orange);
   cursor: pointer;
 }
 
-.light-icon {
-    width: 100px;
-    height: 100px;
-}
+/* ===== AC & MODE ===== */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* css cho điều hòa */
 .content-ac {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 40px;
-  padding: 20px 0;
+  gap: 24px;
+  padding: 10px 0;
+  width: 100vh;
+}
+
+/* vòng tròn nhiệt độ */
+.ac-temp-control {
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .round-btn {
@@ -142,22 +123,23 @@
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  border: 10px solid #e9e5ff;
-  border-top-color: var(--dash-purple);
+  padding: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: conic-gradient(var(--dash-purple) 0deg, #e9e5ff 0deg);
 }
 
 .temp-circle-inner {
-  width: 120px;
-  height: 120px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  background: #fff;
+  background: #ffffff;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .temp-value {
@@ -165,14 +147,218 @@
   font-weight: 700;
 }
 
-.temp-unit {
-  font-size: 12px;
+/* ===== AC sections (Mode / Fan speed) ===== */
+
+.ac-section {
+  width: 100%;
+  max-width: 520px;
+  /* max-width: 678px; */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ac-label {
+  align-self: flex-start;
+  font-size: 14px;
   color: var(--dash-text-muted);
 }
+
+/* MODE BAR */
+/* ===== MODE BAR ===== */
+
+.mode-ac {
+  display: flex;
+  align-items: center;
+  border-radius: 40px;
+  border: 1px solid var(--primary-orange);
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(246, 147, 41, 0.25);
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 16px 18px;
+  background: #ffffff;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+/* đường chia cột */
+.mode-btn + .mode-btn {
+  border-left: 1px solid rgba(246, 147, 41, 0.4);
+}
+
+/* icon + text màu tím */
+.mode-btn span {
+  color: #262262;
+}
+
+/* BTN ACTIVE */
+.mode-btn--active {
+  background: var(--primary-orange);
+  color: #fff;
+}
+
+.mode-btn--active span {
+  color: #ffffff !important;
+}
+
+/* Hover nút KHÔNG active */
+.mode-btn:hover:not(.mode-btn--active) {
+  background: #fff4e6;
+  /* opacity: 0.5; */
+}
+
+/* FAN SPEED trong AC */
+
+.ac-fan-speed {
+  display: flex;
+  border-radius: 999px;
+  border: 0.5px solid var(--primary-orange);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.ac-fan-btn {
+  flex: 1;
+  padding: 10px 14px;
+  border: none;
+  background: #ffffff;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  font-size: 13px;
+}
+
+.ac-fan-btn + .ac-fan-btn {
+  border-left: 0.5px solid rgba(246, 147, 41, 0.3);
+}
+
+.ac-fan-btn span {
+  color: #262262;
+}
+
+.ac-fan-btn--active {
+  background: var(--primary-orange);
+}
+
+.ac-fan-btn--active span {
+  color: #ffffff;
+}
+
+.ac-fan-btn:hover:not(.ac-fan-btn--active) {
+  background: var(--hv-device-card);
+}
+
+/* 3 card dưới: Swing / Timer On / Timer Off */
+
+.ac-extra-actions {
+  display: flex;
+  gap: 40px;
+  margin-top: 8px;
+  /* width: 100%;
+  justify-content: space-between; */
+}
+
+.ac-extra-card {
+  width: 120px;
+  height: 120px;
+  border-radius: 24px;
+  border: 0.5px solid var(--primary-orange);
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.ac-extra-card span {
+  font-size: 14px;
+  color: #262262;
+}
+
+.ac-extra-card:hover {
+  background: var(--hv-device-card);
+  transform: translateY(-2px);
+}
+
+.device-panel--empty {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dash-text-muted);
+  font-size: 14px;
+}
+
+/* khi thiết bị OFF: panel mờ và không click được */
+.device-panel--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.device-power-text.on {
+  font-size: 13px;
+  color: #2ecc71;
+}
+
+.device-power-text.off {
+  font-size: 13px;
+  color: #e74c3c;
+}
+
+/* footer */
 
 .device-footer {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
   color: var(--dash-text-muted);
+}
+
+/* icon on off */
+
+.power-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: 0.25s ease;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.3) 30%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+}
+
+.power-dot.on {
+  background-color: #2ecc71;
+  box-shadow: 0 0 6px rgba(46, 204, 113, 0.7), 0 0 12px rgba(46, 204, 113, 0.5),
+    inset 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+.power-dot.off {
+  background-color: #e74c3c;
+  box-shadow: 0 0 4px rgba(231, 76, 60, 0.4), inset 0 0 3px rgba(0, 0, 0, 0.3);
 }

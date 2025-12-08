@@ -345,6 +345,9 @@
 
 .member-info {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .member-name {

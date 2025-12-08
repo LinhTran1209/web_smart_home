@@ -19,11 +19,11 @@ const MembersPanel = () => {
       </div>
 
       <div className="members-row">
-        <MemberAvatar name="Scarlett" role="Admin" />
-        <MemberAvatar name="Narlya" role="Full Access" />
-        <MemberAvatar name="Riya" role="Full Access" />
-        <MemberAvatar name="Dad" role="Full Access" />
-        <MemberAvatar name="Mom" role="Full Access" />
+        <MemberAvatar name="Linh" role="Trưởng phòng" />
+        <MemberAvatar name="Binh" role="Thành viên" />
+        <MemberAvatar name="Bao" role="Thành viên" />
+        <MemberAvatar name="HA" role="Thành viên" />
+        <MemberAvatar name="Lan" role="Thành viên" />
       </div>
     </>
   );

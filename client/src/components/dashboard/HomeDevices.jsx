@@ -3,14 +3,19 @@ import api from "../../utils/axios.js";
 import { Lightbulb, Fan, Snowflake, Thermometer } from "lucide-react";
 import no_data from "../../assets/icons/no_data.svg";
 import checkDeviceType from "../../utils/checkDeviceType.js";
+import Icon from "@mdi/react";
+import {mdiFan, mdiSnowflake} from "@mdi/js";
 
-const HomeDevices = () => {
+const HomeDevices = ({ onDeviceSelected, onDeviceCommand }) => {
   const [buildings, setBuildings] = useState([]);
   const [rooms, setRooms] = useState([]);
   const [devices, setDevices] = useState([]);
 
   const [selectedBuildingId, setSelectedBuildingId] = useState("");
   const [selectedRoomId, setSelectedRoomId] = useState("");
+
+  const safeOnDeviceSelected = onDeviceSelected || (() => {});
+  const safeOnDeviceCommand = onDeviceCommand || (() => {});
 
   const [deviceStatesMap, setDeviceStatesMap] = useState({});
   const [loadingDevices, setLoadingDevices] = useState(false);
@@ -28,7 +33,9 @@ const HomeDevices = () => {
 
         const buildingsData = bRes.data || [];
         const roomsData = rRes.data || [];
-        const devicesData = (dRes.data || []).filter(d => d.type !== "sensor");
+        const devicesData = (dRes.data || []).filter(
+          (d) => d.type !== "sensor"
+        );
 
         setBuildings(buildingsData);
         setRooms(roomsData);
@@ -78,10 +85,14 @@ const HomeDevices = () => {
       setLoadingDevices(true);
       try {
         // Lọc bỏ sensor
-        const filteredDevices = devicesInRoom.filter(d => d.type !== "sensor");
+        const filteredDevices = devicesInRoom.filter(
+          (d) => d.type !== "sensor"
+        );
         const results = await Promise.all(
           filteredDevices.map((device) =>
-            api.get(`/device-states/${device.device_id}`).then((res) => res.data[0])
+            api
+              .get(`/device-states/${device.device_id}`)
+              .then((res) => res.data[0])
           )
         );
 
@@ -109,8 +120,10 @@ const HomeDevices = () => {
     switch (deviceType) {
       case "ac":
         return Snowflake;
+        // return () => <Icon path={mdiSnowflake} size={1} />;
       case "fan":
-        return Fan;
+        // return Fan;
+        return () => <Icon path={mdiFan} size={1} spin/>;
       default:
         return Lightbulb;
     }
@@ -137,35 +150,23 @@ const HomeDevices = () => {
     const currentlyOn = isOn(currentState);
     const nextOn = !currentlyOn;
 
-    // payload control (khi m có API điều khiển thì bật lại)
-    const payload = {
-      action: "on_off",
-      value: nextOn,
-    };
-
     try {
       setToggling((prev) => ({ ...prev, [deviceId]: true }));
 
-      // TODO: khi có API control thực, bật dòng này và chỉnh endpoint + payload
-      // await api.post(`/devices/${deviceId}/control`, payload);
+      // Gửi lệnh ra ngoài (HomePage -> MQTT)
+      safeOnDeviceCommand(device, { kind: "on_off", value: nextOn });
 
-      // optimistic update local state
+      // Update local state (optimistic)
       const oldStatus = currentState?.status || [];
       const otherProps = oldStatus.filter((s) => s.property !== "on_off");
-
       const newState = {
         ...(currentState || {}),
         device_id: deviceId,
-        device_type:
-          currentState?.device_type ||
-          (device.type === "sensor" ? "sensor" : "led"),
+        device_type: currentState?.device_type || device.type,
         timestamp: new Date().toISOString(),
         status: [
           ...otherProps,
-          {
-            property: "on_off",
-            value: nextOn ? "on" : "off",
-          },
+          { property: "on_off", value: nextOn ? "on" : "off" },
         ],
       };
 
@@ -173,6 +174,15 @@ const HomeDevices = () => {
         ...prev,
         [deviceId]: newState,
       }));
+
+      // nếu panel đang hiển thị thiết bị này thì update luôn
+      const controlType = checkDeviceType(newState.device_type || device.type);
+      safeOnDeviceSelected({
+        device,
+        deviceState: newState,
+        controlType,
+        isOn: nextOn,
+      });
     } catch (err) {
       console.error("Toggle device failed:", err);
     } finally {
@@ -239,12 +249,32 @@ const HomeDevices = () => {
               ? "device-card device-card--primary"
               : "device-card device-card--neutral";
 
+            const controlType = checkDeviceType(
+              state?.device_type || device.type
+            );
+
+            const handleSelectCard = () => {
+              safeOnDeviceSelected({
+                device,
+                deviceState: state,
+                controlType,
+                isOn: on,
+              });
+            };
+
             return (
-              <div key={device.device_id} className={cardClass}>
+              <div
+                key={device.device_id}
+                className={cardClass}
+                onClick={handleSelectCard}
+              >
                 <div className="device-status-row">
                   <span className="device-status">{on ? "ON" : "OFF"}</span>
 
-                  <label className="switch">
+                  <label
+                    className="switch"
+                    onClick={(e) => e.stopPropagation()} // không trigger chọn card
+                  >
                     <input
                       type="checkbox"
                       checked={on}
